@@ -66,7 +66,7 @@ $app->get('/getMetodu/{id}', function (Request $request, Response $response) {
 });
 
 //örnek post methodu
-$app->post('/PostMetodu/Ekle', function(Request $request, Response $response){
+$app->post('/postMetodu/Ekle', function(Request $request, Response $response){
   $adı    =   $request->getParam("adı");
   $soyadı =   $request->getParam("soyadı");
   $db= new MySQL();
@@ -99,7 +99,7 @@ $app->post('/PostMetodu/Ekle', function(Request $request, Response $response){
 });
 
 //Örnek Put Metodu
-$app->put('/PutMetodu/update/{id}', function (Request $request, Response $response){
+$app->put('/putMetodu/update/{id}', function (Request $request, Response $response){
   $id = $request->getAttribute("id");
   if($id){
     $adı    =   $request->getParam("adı");
@@ -146,6 +146,35 @@ $app->put('/PutMetodu/update/{id}', function (Request $request, Response $respon
 });
 
 //örnek silme methodu
+$app->delete('/deleteMetodu/{id}', function (Request $request, Response $response) {
+  $id = $request->getAttribute("id");
 
+  $db = new MySQL();
+  try {
+  $db =  $db->Connect();
+  $courses = $db->query("DELETE FROM isimler Where id = $id");
+  if(!empty($courses)){
+    return $response
+          ->withStatus(200)
+          ->withHeader('Content-Type', 'application/json')
+          ->withJson($courses);
+
+  }else {
+    return $response->withStatus(400);
+  }
+
+  } catch (\Exception $e) {
+    return $response->withJson(
+      array(
+        "HATA" => array(
+          "Hata Mesaji" => $e->getMessage(),
+          "Kodu" => $e->getCode()
+        )
+      )
+    );
+    $db = null;
+  }
+
+});
 
 ?>
