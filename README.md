@@ -35,7 +35,6 @@ Geri Döndürülen Json Çıktısı
   "adı": "mustafa",
   "soyadı": "sevindi"
   }
-  ...
 ]
 ```
 ###PUT-/api/v1/
