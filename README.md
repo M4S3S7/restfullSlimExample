@@ -4,7 +4,7 @@ php kullanarak slim freamwork ile Restfull api yapımı JWT ile apinin korunmas�
 <summary><b>21.07.2019 Sadece İşlemleri Ekledim </b></summary>
 ## Endpoint Kullanımı
 
-### Post-/api/v1/
+###  Post-/api/v1/
 Örnek URL => api/v1/PostMetodu/Ekle
 
 
