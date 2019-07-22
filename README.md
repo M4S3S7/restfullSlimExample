@@ -24,7 +24,7 @@ Geri Döndürülen Json Çıktısı
 ```
 
 
-### GET-/api/v1/
+### GET-/api/v1/ (Çoklu Sorgu)
 Örnek URL => api/v1/getMetodu
 
 ```json
@@ -37,15 +37,32 @@ Geri Döndürülen Json Çıktısı
   }
 ]
 ```
+
+### GET-/api/v1/ (Tekli Sorgu)
+Örnek URL => api/v1/getMetodu/{id}
+
+```json
+[
+  {
+
+  "id": "1",
+  "adi": "mustafa",
+  "soyadı": "sevindi"
+  }
+]
+```
 ### PUT-/api/v1/###
 Örnek URL => /api/v1//PutMetodu/update/{id}
 **Güncelleme İçeriği**
+
 | Tablo Adı | Veri Tipi    |
 |-----------|--------------|
 | id        | int(11)      |
 | adı       | varchar(250) |
 | soyadı    | varchar(250) |
+
 Geri dönen Json Verisi
+
 ```json
 {
     "Başarılı": "Başarılı bir güncelleme"
