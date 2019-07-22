@@ -10,7 +10,7 @@ require '../../src/config/MySQL.php';
 $app = new \Slim\App;
 
 
-require "../../src/routes/courses.php";
+require "../../src/routes/ornekSorgu.php";
 
 
 $app->run();

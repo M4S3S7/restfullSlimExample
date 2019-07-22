@@ -23,7 +23,39 @@ $app->get('/getMetodu', function (Request $request, Response $response) {
     return $response->withJson(
       array(
         "HATA" => array(
-          "Hata Mesajı" => $e->getMessage(),
+          "Hata Mesaji" => $e->getMessage(),
+          "Kodu" => $e->getCode()
+        )
+      )
+    );
+    $db = null;
+  }
+
+});
+
+//örnek get detay methodu
+$app->get('/getMetodu/{id}', function (Request $request, Response $response) {
+  $id = $request->getAttribute("id");
+
+  $db = new MySQL();
+  try {
+  $db =  $db->Connect();
+  $courses = $db->query("SELECT * FROM isimler Where id = $id")->fetchAll(PDO::FETCH_OBJ);
+  if(!empty($courses)){
+    return $response
+          ->withStatus(200)
+          ->withHeader('Content-Type', 'application/json')
+          ->withJson($courses);
+
+  }else {
+    return $response->withStatus(400);
+  }
+
+  } catch (\Exception $e) {
+    return $response->withJson(
+      array(
+        "HATA" => array(
+          "Hata Mesaji" => $e->getMessage(),
           "Kodu" => $e->getCode()
         )
       )
@@ -103,8 +135,17 @@ $app->put('/PutMetodu/update/{id}', function (Request $request, Response $respon
       $db= null;
     }
 
+  }else {
+    return $response->withStatus(400)->withHeader('Content-Type', 'application/json')->withJson(array(
+      "Hata" => array(
+        "Mesaj" => "ID bilgisini eksik girdiniz"
+      )
+    ));
   }
 
 });
+
+//örnek silme methodu
+
 
 ?>
